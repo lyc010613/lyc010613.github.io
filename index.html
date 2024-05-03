@@ -59,28 +59,7 @@
         }
     </style>
     <script>
-        // 发送消息询问是否存在 token
-        function askForToken() {
-            // 发送消息给 Vue 应用
-            window.parent.postMessage({ type: 'checkToken' }, 'http://10.244.122.232:8021');
-        }
-
-        // 页面加载完成后询问
-        window.addEventListener('DOMContentLoaded', askForToken);
-
-        // 接收来自 Vue 应用的消息
-        window.addEventListener('message', function(event) {
-            // 确保消息来源正确
-            if (event.origin === 'http://10.244.122.232:8021') {
-                // 检查消息类型
-                if (event.data.type === 'tokenStatus') {
-                    // 根据 token 存在与否进行操作
-                    if (!event.data.tokenExists) {
-                        window.location.href = 'http://10.244.122.232:8021/login';
-                    }
-                }
-            }
-        });
+        
     </script>
 </head>
 <body>
