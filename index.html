@@ -66,9 +66,9 @@
                 response.json()
             })
             .then(data => {
+                console.log(data);
                 // 检查返回的令牌是否为空
                 if (!data.token) {
-                    console.log(data);
                     // 如果令牌为空，则跳转到登录页面
                     window.location.href = 'https://http://10.244.122.232:8021/login';
                 } else {
