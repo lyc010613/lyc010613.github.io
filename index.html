@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业网站首页</title>
+    <style>
+        /* 添加样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            display: inline;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+        }
+        
+        .content {
+            margin-bottom: 30px;
+        }
+        
+        .content p {
+            line-height: 1.5;
+        }
+    </style>
+    <script>
+        // 发送消息询问是否存在 token
+        function askForToken() {
+            // 发送消息给 Vue 应用
+            window.parent.postMessage({ type: 'checkToken' }, 'http://10.244.122.232:8021');
+        }
+
+        // 页面加载完成后询问
+        window.addEventListener('DOMContentLoaded', askForToken);
+
+        // 接收来自 Vue 应用的消息
+        window.addEventListener('message', function(event) {
+            // 确保消息来源正确
+            if (event.origin === 'http://10.244.122.232:8021') {
+                // 检查消息类型
+                if (event.data.type === 'tokenStatus') {
+                    // 根据 token 存在与否进行操作
+                    if (!event.data.tokenExists) {
+                        window.location.href = 'http://10.244.122.232:8021/login';
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">产品与服务</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="hero">
+            <h1>欢迎来到我们的企业网站</h1>
+        </div>
+        <div class="content">
+            <p>这里是企业网站的首页内容，可以展示公司的介绍、产品与服务等信息。</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non lorem sem. Ut faucibus dui id neque hendrerit, et blandit orci tempus. Nulla facilisi. Sed eget arcu velit. Praesent ac erat eget orci rutrum egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti.</p>
+        </div>
+    </div>
+</body>
+</html>
