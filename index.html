@@ -63,7 +63,7 @@
             // 发送 API 请求获取令牌
             fetch('http://localhost:3000/auth/static')
             .then((response) => {
-                return response.json()
+                return response
             })
             .then(data => {
                 console.log(data);
