@@ -62,7 +62,10 @@
         window.addEventListener('DOMContentLoaded', function() {
             // 发送 API 请求获取令牌
             fetch('http://localhost:3000/auth/static')
-            .then(response => response.json())
+            .then((response) => {
+                console.log(response);
+                response.json()
+            })
             .then(data => {
                 // 检查返回的令牌是否为空
                 if (!data.token) {
